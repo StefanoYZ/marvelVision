@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  --color-purple: #4B1F8C;
+  --color-purple-dark: #2B145F;
+  --color-purple-medium: #6B3BBF;
+  --color-purple-light: #EEE8FF;
+  --color-purple-bg: #F8F7FC;
+  --color-brand-text: #1F1B2E;
+
+  /* ── Paleta dorada metalizada (extraída del logo) ─────────────────────────
+     Shadow:    #5C3A00  →  tono más oscuro, simula sombra profunda
+     Base:      #A07010  →  oro cálido sin amarillo
+     Mid:       #C8920A  →  tono principal visible
+     Highlight: #E8B830  →  brillo suave
+     Peak:      #F5D878  →  destellos blanquecinos del metal
+  ──────────────────────────────────────────────────────────────────────── */
+  --color-gold-shadow:    #5C3A00;
+  --color-gold-base:      #A07010;
+  --color-gold:           #C8920A;   /* token principal */
+  --color-gold-highlight: #E8B830;
+  --color-gold-peak:      #F5D878;
+
+  --font-sans: 'Inter', sans-serif;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   GRADIENTE DORADO METALIZADO  — reutilizable como clase utilitaria
+   Simula la reflexión de luz sobre metal dorado (como en el logo)
+══════════════════════════════════════════════════════════════════════════ */
+
+/* Para fondos / botones: usa la variable CSS */
+:root {
+  --gold-metal-gradient: linear-gradient(
+    135deg,
+    #5C3A00 0%,
+    #A07010 12%,
+    #C8920A 28%,
+    #E8B830 42%,
+    #F5D878 50%,
+    #E8B830 58%,
+    #C8920A 72%,
+    #A07010 88%,
+    #5C3A00 100%
+  );
+
+  /* Variante vertical (para texto con dirección top→bottom) */
+  --gold-metal-gradient-v: linear-gradient(
+    180deg,
+    #5C3A00 0%,
+    #C8920A 20%,
+    #F5D878 40%,
+    #E8B830 55%,
+    #C8920A 75%,
+    #5C3A00 100%
+  );
+}
+
+/* Texto con efecto metálico dorado */
+.gold-metal-text {
+  background: var(--gold-metal-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+}
+
+/* Línea decorativa dorada metalizada */
+.gold-line {
+  display: inline-block;
+  width: 48px;
+  height: 3px;
+  background: var(--gold-metal-gradient);
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+
+/* Etiqueta de sección (UPPERCASE pequeña dorada) */
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  background: var(--gold-metal-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ══ Swiper ════════════════════════════════════════════════════════════ */
+.swiper-pagination-bullet {
+  background: var(--color-purple-medium) !important;
+  opacity: 0.5 !important;
+  width: 10px !important;
+  height: 10px !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--color-gold) !important;
+  opacity: 1 !important;
+  width: 28px !important;
+  border-radius: 5px !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: white !important;
+  background: rgba(75, 31, 140, 0.6) !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+/* ══ Animaciones ═══════════════════════════════════════════════════════ */
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(200, 146, 10, 0.5); }
+  50%       { box-shadow: 0 0 0 20px rgba(200, 146, 10, 0); }
+}
+.pulse-gold { animation: pulse-gold 2s ease-in-out infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+.float-animation { animation: float 4s ease-in-out infinite; }
+
+/* ══ Scrollbar ═════════════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-purple-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-purple-medium); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-purple); }
+
+/* ══ Base reset ════════════════════════════════════════════════════════ */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--color-brand-text);
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+  }
+}
