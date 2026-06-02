@@ -10,6 +10,7 @@ const navLinks = [
   { label: 'Servicios',    href: '#servicios' },
   { label: 'Testimonios',  href: '#testimonios' },
   { label: 'Especialista', href: '#especialista' },
+  { label: 'Ubicacion',    href: '#ubicacion' },
   { label: 'Contacto',     href: '#contacto' },
 ];
 

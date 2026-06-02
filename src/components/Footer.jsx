@@ -8,6 +8,7 @@ const quickLinks = [
   { label: 'Servicios', href: '#servicios' },
   { label: 'Testimonios', href: '#testimonios' },
   { label: 'Especialista', href: '#especialista' },
+  { label: 'Ubicacion', href: '#ubicacion' },
   { label: 'Contacto', href: '#contacto' },
 ];
 
@@ -164,7 +165,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#D9A62E' }} />
                 <div>
-                  <p className="text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>Trujillo, La Libertad</p>
+                  <p className="text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>Av. Roma 461, Urb. San Nicolas</p>
                   <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>Perú</p>
                 </div>
               </li>

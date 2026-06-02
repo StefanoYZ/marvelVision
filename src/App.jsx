@@ -7,6 +7,7 @@ import Services from './components/Services';
 import ClinicGallery from './components/ClinicGallery';
 import Testimonials from './components/Testimonials';
 import Specialist from './components/Specialist';
+import LocationMap from './components/LocationMap';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
@@ -24,6 +25,7 @@ function App() {
         <ClinicGallery />
         <Testimonials />
         <Specialist />
+        <LocationMap />
         <FinalCTA />
       </main>
       <Footer />
