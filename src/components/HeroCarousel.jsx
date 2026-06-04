@@ -63,10 +63,9 @@ const heroSlides = [
 
 export default function HeroCarousel() {
   const swiperRef = useRef(null);
+  const heroHeight = 'clamp(640px, 88svh, 900px)';
 
   // Compute a stable full‑viewport height to avoid layout shifts between slides
-  const VH = 'calc(var(--vh, 1vh) * 100)';
-
   const handleNavClick = (e, href) => {
     e.preventDefault();
     const target = document.querySelector(href);
@@ -77,9 +76,11 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section id="inicio" className="relative overflow-hidden" style={{ height: '100svh', minHeight: '600px' }}>
+    <section id="inicio" className="relative overflow-hidden" style={{ height: heroHeight }}>
       <Swiper
-        ref={swiperRef}
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
         modules={[Autoplay, EffectFade, Pagination, Navigation]}
         effect="fade"
         autoplay={{ delay: 5500, disableOnInteraction: false }}
@@ -92,8 +93,7 @@ export default function HeroCarousel() {
         {heroSlides.map((slide) => (
           <SwiperSlide key={slide.id} style={{ height: '100%' }}>
             <div
-              className="relative flex items-center overflow-hidden"
-              style={{ height: '100%' }}
+              className="relative flex h-full items-center overflow-hidden"
             >
               {/* Background image */}
               <div className="absolute inset-0">
@@ -123,8 +123,8 @@ export default function HeroCarousel() {
               </div>
 
               {/* Content */}
-              <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-16 w-full flex items-center" style={{ minHeight: '100%' }}>
-                <div className="max-w-xl">
+              <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 md:px-24 lg:px-28 2xl:px-8 pt-28 sm:pt-32 pb-24 md:pb-20 w-full h-full flex items-center">
+                <div className="max-w-xl md:pl-10 lg:pl-0">
                   {/* Label */}
                   <motion.div
                     initial={{ opacity: 0, y: 16 }}
@@ -146,8 +146,7 @@ export default function HeroCarousel() {
                     initial={{ opacity: 0, y: 28 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.65, delay: 0.1 }}
-                    className="font-black leading-[1.08] text-white mb-4"
-                    style={{ fontSize: 'clamp(2.6rem, 5.5vw, 4.5rem)' }}
+                    className="hero-title font-black leading-[1.08] text-white mb-4"
                   >
                     {slide.title}{' '}
                     <span
@@ -167,7 +166,7 @@ export default function HeroCarousel() {
                     initial={{ opacity: 0, y: 18 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-base sm:text-lg leading-relaxed mb-10"
+                    className="text-base sm:text-lg leading-relaxed mb-8 sm:mb-10 max-w-prose"
                     style={{ color: 'rgba(255,255,255,0.78)' }}
                   >
                     {slide.desc}
@@ -185,7 +184,7 @@ export default function HeroCarousel() {
                       id="hero-whatsapp-btn"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl text-sm font-bold transition-all duration-300"
+                      className="inline-flex items-center justify-center gap-2.5 px-5 sm:px-7 py-3.5 rounded-2xl text-sm font-bold transition-all duration-300"
                       style={{
                         background: GOLD_BG,
                         color: '#fff',
@@ -209,7 +208,7 @@ export default function HeroCarousel() {
                       href="#servicios"
                       id="hero-know-more-btn"
                       onClick={(e) => handleNavClick(e, '#servicios')}
-                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-semibold text-white transition-all duration-300"
+                      className="inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-3.5 rounded-2xl text-sm font-semibold text-white transition-all duration-300"
                       style={{
                         background: 'rgba(255,255,255,0.1)',
                         backdropFilter: 'blur(10px)',
@@ -234,7 +233,7 @@ export default function HeroCarousel() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.7, delay: 0.5 }}
-                    className="flex items-center gap-8 mt-12 pt-8"
+                    className="flex flex-wrap items-center gap-x-8 gap-y-4 mt-8 sm:mt-12 pt-6 sm:pt-8"
                     style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}
                   >
                     {[
@@ -272,49 +271,53 @@ export default function HeroCarousel() {
 
       {/* ── Custom Nav Arrows ── */}
       <button
-        className="hero-prev absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-250 cursor-pointer"
+        className="hero-prev hidden md:flex absolute left-5 lg:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 lg:w-14 lg:h-14 rounded-full items-center justify-center transition-all duration-250 cursor-pointer"
         style={{
-          background: 'rgba(255,255,255,0.12)',
-          backdropFilter: 'blur(10px)',
-          border: `1.5px solid rgba(255,255,255,0.25)`,
+          background: 'rgba(255,255,255,0.14)',
+          backdropFilter: 'blur(12px)',
+          border: '1.5px solid rgba(255,255,255,0.48)',
           color: '#fff',
+          boxShadow: '0 12px 34px rgba(27,13,60,0.24)',
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.background = GOLD;
-          e.currentTarget.style.borderColor = GOLD;
-          e.currentTarget.style.transform = 'translateY(-50%) scale(1.08)';
+          e.currentTarget.style.background = GOLD_BG;
+          e.currentTarget.style.borderColor = GOLD_MID;
+          e.currentTarget.style.transform = 'translateY(-50%) scale(1.06)';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.background = 'rgba(255,255,255,0.12)';
-          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)';
+          e.currentTarget.style.background = 'rgba(255,255,255,0.14)';
+          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.48)';
           e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
         }}
         aria-label="Anterior"
+        onClick={() => swiperRef.current?.slidePrev()}
       >
-        <ChevronLeft className="w-5 h-5" />
+        <ChevronLeft className="w-6 h-6" />
       </button>
 
       <button
-        className="hero-next absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-250 cursor-pointer"
+        className="hero-next hidden md:flex absolute right-5 lg:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 lg:w-14 lg:h-14 rounded-full items-center justify-center transition-all duration-250 cursor-pointer"
         style={{
-          background: 'rgba(255,255,255,0.12)',
-          backdropFilter: 'blur(10px)',
-          border: '1.5px solid rgba(255,255,255,0.25)',
+          background: 'rgba(255,255,255,0.14)',
+          backdropFilter: 'blur(12px)',
+          border: '1.5px solid rgba(255,255,255,0.48)',
           color: '#fff',
+          boxShadow: '0 12px 34px rgba(27,13,60,0.24)',
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.background = GOLD;
-          e.currentTarget.style.borderColor = GOLD;
-          e.currentTarget.style.transform = 'translateY(-50%) scale(1.08)';
+          e.currentTarget.style.background = GOLD_BG;
+          e.currentTarget.style.borderColor = GOLD_MID;
+          e.currentTarget.style.transform = 'translateY(-50%) scale(1.06)';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.background = 'rgba(255,255,255,0.12)';
-          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)';
+          e.currentTarget.style.background = 'rgba(255,255,255,0.14)';
+          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.48)';
           e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
         }}
         aria-label="Siguiente"
+        onClick={() => swiperRef.current?.slideNext()}
       >
-        <ChevronRight className="w-5 h-5" />
+        <ChevronRight className="w-6 h-6" />
       </button>
 
     </section>

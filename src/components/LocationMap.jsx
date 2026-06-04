@@ -1,33 +1,35 @@
 import { motion } from 'framer-motion';
 import { Clock, Mail, MapPin, Navigation, Phone } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
-import { WHATSAPP_URL } from '../constants';
-
-const address = 'Av. Roma 461, Urb. San Nicolas, Trujillo, La Libertad';
-const mapsQuery = encodeURIComponent(`${address}, Peru`);
-const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
-const embedUrl = `https://www.google.com/maps?q=${mapsQuery}&output=embed`;
+import {
+  BUSINESS_INFO,
+  CONTACT_INFO,
+  GOOGLE_MAPS_EMBED_URL,
+  GOOGLE_MAPS_URL,
+  LOCATION_INFO,
+  WHATSAPP_URL,
+} from '../constants';
 
 const contactItems = [
   {
     icon: MapPin,
     title: 'Direccion',
-    text: address,
+    text: LOCATION_INFO.address,
   },
   {
     icon: Clock,
     title: 'Horario',
-    text: 'Lun-Sab, 9:00 am - 6:00 pm',
+    text: CONTACT_INFO.schedule,
   },
   {
     icon: Phone,
     title: 'Telefono',
-    text: '+51 999 999 999',
+    text: CONTACT_INFO.phone,
   },
   {
     icon: Mail,
     title: 'Correo',
-    text: 'contacto@marvelvision.pe',
+    text: CONTACT_INFO.email,
   },
 ];
 
@@ -35,7 +37,7 @@ export default function LocationMap() {
   return (
     <section
       id="ubicacion"
-      className="relative py-24 px-4 overflow-hidden"
+      className="relative section-spacing px-4 overflow-hidden"
       style={{ background: 'linear-gradient(135deg, #FFFFFF 0%, #F8F7FC 52%, #EEE8FF 100%)' }}
     >
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -62,13 +64,13 @@ export default function LocationMap() {
             <div className="gold-line" />
           </div>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-4"
+            className="section-title font-black leading-tight mb-4"
             style={{ color: '#1F1B2E' }}
           >
             Encuentranos de forma{' '}
             <span style={{ color: '#4B1F8C' }}>rapida y sencilla</span>
           </h2>
-          <p className="text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
+          <p className="section-copy leading-relaxed max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
             Estamos ubicados en una zona accesible de Trujillo para que puedas llegar
             sin complicaciones a tu consulta oftalmologica.
           </p>
@@ -80,7 +82,7 @@ export default function LocationMap() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.75, ease: 'easeOut' }}
-            className="relative rounded-3xl overflow-hidden min-h-[420px]"
+            className="relative rounded-3xl overflow-hidden min-h-[320px] sm:min-h-[420px]"
             style={{
               boxShadow: '0 30px 80px rgba(75,31,140,0.18)',
               border: '1px solid rgba(201,146,10,0.32)',
@@ -89,7 +91,7 @@ export default function LocationMap() {
           >
             <iframe
               title="Ubicacion de Marvelvision en Google Maps"
-              src={embedUrl}
+              src={GOOGLE_MAPS_EMBED_URL}
               className="absolute inset-0 w-full h-full"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -114,9 +116,9 @@ export default function LocationMap() {
                   <MapPin className="w-5 h-5" style={{ color: '#1F1B2E' }} />
                 </div>
                 <div>
-                  <p className="text-sm font-black mb-1">Marvelvision</p>
+                  <p className="text-sm font-black mb-1">{BUSINESS_INFO.brandName}</p>
                   <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.72)' }}>
-                    {address}
+                    {LOCATION_INFO.address}
                   </p>
                 </div>
               </div>
@@ -182,7 +184,7 @@ export default function LocationMap() {
 
             <div className="mt-auto flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3">
               <a
-                href={mapsUrl}
+                href={GOOGLE_MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl text-sm font-bold transition-all duration-300"

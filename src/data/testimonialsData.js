@@ -34,23 +34,5 @@ export const testimonialsData = [
     comment:
       'Excelente atención desde el primer momento. La Dra. explica todo con paciencia y el equipo médico es de primer nivel. Muy recomendable.',
     treatment: 'Retina y Glaucoma',
-  },
-  {
-    id: 5,
-    name: 'Ana María Delgado',
-    avatar: 'https://i.pravatar.cc/150?img=25',
-    rating: 5,
-    comment:
-      'Me operé el pterigion y quedé muy satisfecha. La recuperación fue rápida y el resultado visual mejoró notablemente. Clínica de confianza.',
-    treatment: 'Cirugía de Pterigion',
-  },
-  {
-    id: 6,
-    name: 'Martín Díaz Sánchez',
-    avatar: 'https://i.pravatar.cc/150?img=68',
-    rating: 5,
-    comment:
-      'Profesionalismo y calidez humana en cada consulta. Me sentí en manos de verdaderos expertos. El seguimiento post-operatorio fue impecable.',
-    treatment: 'Cirugía Refractiva Láser',
-  },
+  }
 ];

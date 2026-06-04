@@ -1,39 +1,36 @@
 import { motion } from 'framer-motion';
-import { WHATSAPP_URL } from '../constants';
+import { CONTACT_INFO, LOCATION_INFO, WHATSAPP_URL } from '../constants';
 import { FaWhatsapp } from 'react-icons/fa';
 import { Clock, MapPin, Phone } from 'lucide-react';
 
 const infoItems = [
   {
     icon: Clock,
-    title: 'Horario de atención',
-    lines: ['Lun – Vie: 9:00 am – 7:00 pm', 'Sáb: 9:00 am – 1:00 pm'],
+    title: 'Horario de atencion',
+    lines: [CONTACT_INFO.schedule],
   },
   {
     icon: MapPin,
-    title: 'Ubicación',
-    lines: ['Av. España 890, Trujillo', 'La Libertad, Perú'],
+    title: 'Ubicacion',
+    lines: [LOCATION_INFO.street, `${LOCATION_INFO.city}, ${LOCATION_INFO.country}`],
   },
   {
     icon: Phone,
     title: 'Contacto',
-    lines: ['+51 999 999 999', 'marvelvision@email.com'],
+    lines: [CONTACT_INFO.phone, CONTACT_INFO.email],
   },
 ];
 
 export default function CTA() {
   return (
-    <section id="contacto" className="py-24 bg-white relative overflow-hidden">
-      {/* Top wave decoration */}
+    <section id="contacto" className="section-spacing bg-white relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-purple via-purple-medium to-gold" />
 
-      {/* Background blob */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full bg-purple-light/40 blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Main CTA card */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,14 +38,12 @@ export default function CTA() {
           transition={{ duration: 0.7 }}
           className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-purple-dark via-purple to-purple-medium shadow-2xl shadow-purple/30 p-10 md:p-16 text-center mb-20"
         >
-          {/* Decorative circles */}
           <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/5" />
           <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-white/5" />
           <div className="absolute top-8 left-8 w-3 h-3 rounded-full bg-gold/60" />
           <div className="absolute bottom-8 right-12 w-5 h-5 rounded-full bg-gold/40" />
           <div className="absolute top-12 right-24 w-2 h-2 rounded-full bg-white/40" />
 
-          {/* Eye icon decoration */}
           <div className="relative z-10">
             <motion.div
               animate={{ scale: [1, 1.05, 1] }}
@@ -62,15 +57,14 @@ export default function CTA() {
               </svg>
             </motion.div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
-              Tu visión merece<br />
-              <span className="text-gold">atención experta</span>
+            <h2 className="section-title font-bold text-white mb-5 leading-tight">
+              Tu vision merece<br />
+              <span className="text-gold">atencion experta</span>
             </h2>
             <p className="text-white/75 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-              No esperes a que los problemas visuales avancen. Agenda tu consulta hoy mismo y descubre por qué miles de pacientes confían en Marvelvision.
+              No esperes a que los problemas visuales avancen. Agenda tu consulta hoy mismo y descubre por que miles de pacientes confian en Marvelvision.
             </p>
 
-            {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
                 href={WHATSAPP_URL}
@@ -84,7 +78,7 @@ export default function CTA() {
                 Agendar cita por WhatsApp
               </motion.a>
               <motion.a
-                href="tel:+51999999999"
+                href={CONTACT_INFO.phoneHref}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center justify-center gap-3 bg-white/15 hover:bg-white/25 text-white font-semibold px-10 py-5 rounded-full text-base transition-all duration-300 border border-white/20"
@@ -96,7 +90,6 @@ export default function CTA() {
           </div>
         </motion.div>
 
-        {/* Info cards row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {infoItems.map(({ icon: Icon, title, lines }, i) => (
             <motion.div
@@ -112,8 +105,8 @@ export default function CTA() {
               </div>
               <div>
                 <h3 className="font-bold text-purple-dark mb-2">{title}</h3>
-                {lines.map((l) => (
-                  <p key={l} className="text-brand-text/65 text-sm">{l}</p>
+                {lines.map((line) => (
+                  <p key={line} className="text-brand-text/65 text-sm">{line}</p>
                 ))}
               </div>
             </motion.div>

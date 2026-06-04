@@ -1,30 +1,38 @@
-import { Eye, Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaTiktok, FaYoutube, FaWhatsapp } from 'react-icons/fa';
-import { WHATSAPP_URL } from '../constants';
+import {
+  BRAND_ASSETS,
+  BUSINESS_INFO,
+  CONTACT_INFO,
+  LOCATION_INFO,
+  SOCIAL_LINKS,
+  WHATSAPP_URL,
+} from '../constants';
 
 const quickLinks = [
   { label: 'Inicio', href: '#inicio' },
   { label: 'Beneficios', href: '#beneficios' },
   { label: 'Servicios', href: '#servicios' },
   { label: 'Testimonios', href: '#testimonios' },
+  { label: 'Comentarios', href: '#comentarios' },
   { label: 'Especialista', href: '#especialista' },
   { label: 'Ubicacion', href: '#ubicacion' },
   { label: 'Contacto', href: '#contacto' },
 ];
 
 const servicesList = [
-  'Cirugía de catarata',
-  'Cirugía refractiva láser',
-  'Cirugía de pterigion',
+  'Cirugia de catarata',
+  'Cirugia refractiva laser',
+  'Cirugia de pterigion',
   'Superficie ocular',
   'Retina y glaucoma',
 ];
 
 const socialLinks = [
-  { icon: FaFacebook, href: '#', label: 'Facebook', id: 'footer-facebook' },
-  { icon: FaInstagram, href: '#', label: 'Instagram', id: 'footer-instagram' },
-  { icon: FaTiktok, href: '#', label: 'TikTok', id: 'footer-tiktok' },
-  { icon: FaYoutube, href: '#', label: 'YouTube', id: 'footer-youtube' },
+  { icon: FaFacebook, href: SOCIAL_LINKS.facebook, label: 'Facebook', id: 'footer-facebook' },
+  { icon: FaInstagram, href: SOCIAL_LINKS.instagram, label: 'Instagram', id: 'footer-instagram' },
+  { icon: FaTiktok, href: SOCIAL_LINKS.tiktok, label: 'TikTok', id: 'footer-tiktok' },
+  { icon: FaYoutube, href: SOCIAL_LINKS.youtube, label: 'YouTube', id: 'footer-youtube' },
   { icon: FaWhatsapp, href: WHATSAPP_URL, label: 'WhatsApp', id: 'footer-whatsapp' },
 ];
 
@@ -42,27 +50,30 @@ export default function Footer() {
     <footer style={{ background: '#2B145F' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-5">
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ background: 'linear-gradient(135deg, #4B1F8C, #6B3BBF)' }}
-              >
-                <Eye className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <p className="text-xl font-black text-white leading-none">
-                  Marvel<span style={{ color: '#D9A62E' }}>vision</span>
-                </p>
-                <p className="text-xs tracking-widest uppercase" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                  Clínica Oftalmológica
-                </p>
-              </div>
+            <div
+              className="inline-flex items-center mb-5"
+              style={{
+                filter: BRAND_ASSETS.logoOnDarkFilter,
+              }}
+            >
+              <img
+                src={BRAND_ASSETS.logoLight}
+                alt={BUSINESS_INFO.displayName}
+                className="object-contain"
+                style={{
+                  width: '210px',
+                  maxWidth: '100%',
+                }}
+                onError={(e) => {
+                  e.currentTarget.src = BRAND_ASSETS.fallbackLogo;
+                  e.currentTarget.style.filter = BRAND_ASSETS.logoOnDarkFilter;
+                }}
+              />
             </div>
             <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(255,255,255,0.6)' }}>
-              Cuidamos tus ojos con tecnología de vanguardia y un enfoque humano
-              para que vivas con una mejor visión.
+              Cuidamos tus ojos con tecnologia de vanguardia y un enfoque humano
+              para que vivas con una mejor vision.
             </p>
             <div className="flex gap-3">
               {socialLinks.map(({ icon: Icon, href, label, id }) => (
@@ -98,10 +109,9 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick links */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-widest mb-5" style={{ color: '#D9A62E' }}>
-              Navegación
+              Navegacion
             </h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -121,7 +131,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-widest mb-5" style={{ color: '#D9A62E' }}>
               Servicios
@@ -145,7 +154,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-widest mb-5" style={{ color: '#D9A62E' }}>
               Contacto
@@ -154,19 +162,19 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#D9A62E' }} />
                 <div>
-                  <p className="text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>+51 999 999 999</p>
-                  <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>Lun–Sáb, 9am–6pm</p>
+                  <p className="text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>{CONTACT_INFO.phone}</p>
+                  <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>{CONTACT_INFO.scheduleShort}</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#D9A62E' }} />
-                <p className="text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>contacto@marvelvision.pe</p>
+                <p className="text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>{CONTACT_INFO.email}</p>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#D9A62E' }} />
                 <div>
-                  <p className="text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>Av. Roma 461, Urb. San Nicolas</p>
-                  <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>Perú</p>
+                  <p className="text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>{LOCATION_INFO.street}</p>
+                  <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>{LOCATION_INFO.country}</p>
                 </div>
               </li>
             </ul>
@@ -174,13 +182,14 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
-            © {new Date().getFullYear()} Marvelvision Clínica Oftalmológica. Todos los derechos reservados.
+            © {new Date().getFullYear()} {BUSINESS_INFO.displayName}. Todos los derechos reservados.
           </p>
-          <p className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>Trujillo, Perú</p>
+          <p className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>
+            {BUSINESS_INFO.city}, {BUSINESS_INFO.country}
+          </p>
         </div>
       </div>
     </footer>

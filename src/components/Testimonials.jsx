@@ -28,7 +28,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonios"
-      className="py-24 px-4"
+      className="section-spacing px-4"
       style={{ background: '#F8F7FC' }}
     >
       <div className="max-w-7xl mx-auto">
@@ -37,20 +37,20 @@ export default function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-12 lg:mb-16"
         >
           <span className="section-label">HISTORIAS QUE NOS MOTIVAN</span>
           <div className="flex justify-center">
             <div className="gold-line" />
           </div>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-4"
+            className="section-title font-black leading-tight mb-4"
             style={{ color: '#1F1B2E' }}
           >
             Pacientes que hoy ven la vida{' '}
             <span style={{ color: '#4B1F8C' }}>con otros ojos</span>
           </h2>
-          <p className="text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
+          <p className="section-copy leading-relaxed max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
             Cada sonrisa es el resultado de nuestro compromiso con tu salud visual.
           </p>
         </motion.div>

@@ -22,11 +22,11 @@ export default function ProblemsSection() {
   return (
     <section
       id="problemas"
-      className="py-24 px-4"
+      className="section-spacing px-4"
       style={{ background: '#ffffff' }}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left: Image placeholder */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
@@ -65,7 +65,7 @@ export default function ProblemsSection() {
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -bottom-6 -right-6 p-5 rounded-2xl"
+              className="absolute bottom-4 right-4 sm:-bottom-6 sm:-right-6 p-4 sm:p-5 rounded-2xl"
               style={{
                 background: 'white',
                 boxShadow: '0 20px 60px rgba(75,31,140,0.15)',
@@ -107,13 +107,13 @@ export default function ProblemsSection() {
               <span className="section-label">MEJORAMOS TU DÍA A DÍA</span>
               <div className="gold-line" />
               <h2
-                className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-6"
+                className="section-title font-black leading-tight mb-6"
                 style={{ color: '#1F1B2E' }}
               >
                 Soluciones efectivas para{' '}
                 <span style={{ color: '#4B1F8C' }}>problemas visuales</span> comunes
               </h2>
-              <p className="text-lg leading-relaxed mb-10" style={{ color: '#6B7280' }}>
+              <p className="section-copy leading-relaxed mb-8 lg:mb-10" style={{ color: '#6B7280' }}>
                 Sabemos que los problemas de visión afectan tu calidad de vida.
                 En Marvelvision ofrecemos diagnóstico preciso y tratamientos efectivos.
               </p>

@@ -44,7 +44,7 @@ export default function VideoSection() {
   return (
     <section
       id="video"
-      className="py-24 px-4"
+      className="section-spacing px-4"
       style={{ background: 'linear-gradient(135deg, #EEE8FF 0%, #F8F7FC 60%, #ffffff 100%)' }}
     >
       <div className="max-w-6xl mx-auto">
@@ -61,13 +61,13 @@ export default function VideoSection() {
             <div className="gold-line" />
           </div>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-4"
+            className="section-title font-black leading-tight mb-4"
             style={{ color: '#1F1B2E' }}
           >
             Una experiencia pensada para{' '}
             <span style={{ color: '#4B1F8C' }}>cuidar tu visión</span>
           </h2>
-          <p className="text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
+          <p className="section-copy leading-relaxed max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
             En Marvelvision combinamos tecnología, experiencia médica y trato humano
             para acompañarte en cada etapa de tu salud visual.
           </p>
@@ -208,7 +208,7 @@ export default function VideoSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="grid grid-cols-3 gap-6 mt-10"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-10"
         >
           {[
             { num: '10+', label: 'Años de trayectoria' },

@@ -7,7 +7,7 @@ export default function FinalCTA() {
   return (
     <section
       id="contacto"
-      className="relative py-28 px-4 overflow-hidden"
+      className="relative section-spacing px-4 overflow-hidden"
       style={{
         background: 'linear-gradient(135deg, #2B145F 0%, #4B1F8C 50%, #6B3BBF 100%)',
       }}
@@ -59,14 +59,14 @@ export default function FinalCTA() {
           </div>
 
           {/* Headline */}
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+          <h2 className="font-black text-white leading-tight mb-6" style={{ fontSize: 'clamp(2.2rem, 4.8vw, 4rem)' }}>
             Da el primer paso hacia una{' '}
             <span style={{ color: '#D9A62E' }}>mejor visión</span>
           </h2>
 
           {/* Subtext */}
           <p
-            className="text-xl leading-relaxed mb-12 max-w-2xl mx-auto"
+            className="section-copy leading-relaxed mb-10 lg:mb-12 max-w-2xl mx-auto"
             style={{ color: 'rgba(255,255,255,0.75)' }}
           >
             Agenda tu cita por WhatsApp y recibe una{' '}
@@ -84,7 +84,7 @@ export default function FinalCTA() {
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.2 }}
-              className="flex items-center gap-3 px-10 py-5 rounded-2xl text-lg font-black"
+              className="flex items-center justify-center gap-3 px-6 sm:px-10 py-4 sm:py-5 rounded-2xl text-base sm:text-lg font-black"
               style={{
                 background: 'linear-gradient(135deg, #D9A62E, #F2B544)',
                 color: '#1F1B2E',
@@ -103,7 +103,7 @@ export default function FinalCTA() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-8 text-sm"
+            className="mt-8 text-sm leading-relaxed"
             style={{ color: 'rgba(255,255,255,0.5)' }}
           >
             ✓ Sin largas esperas &nbsp;·&nbsp; ✓ Atención personalizada &nbsp;·&nbsp; ✓ Tecnología de vanguardia

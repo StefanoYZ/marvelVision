@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Award, Globe, Users, Star } from 'lucide-react';
-import { WHATSAPP_URL } from '../constants';
+import { SPECIALIST_INFO, WHATSAPP_URL } from '../constants';
 
 const credentials = [
   { id: 1, icon: Award, text: 'Especialista en cirugía de catarata y refractiva' },
@@ -23,11 +23,11 @@ export default function Specialist() {
   return (
     <section
       id="especialista"
-      className="py-24 px-4"
+      className="section-spacing px-4"
       style={{ background: '#ffffff' }}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left: Doctor Image placeholder */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
@@ -60,15 +60,15 @@ export default function Specialist() {
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -bottom-6 -right-6 p-5 rounded-2xl"
+              className="absolute bottom-4 right-4 sm:-bottom-6 sm:-right-6 p-4 sm:p-5 rounded-2xl"
               style={{
                 background: 'white',
                 boxShadow: '0 20px 60px rgba(75,31,140,0.15)',
                 border: '1px solid rgba(201,146,10,0.3)',
               }}
             >
-              <p className="text-xs font-bold mb-0.5" style={{ color: '#4B1F8C' }}>CMP: 000000</p>
-              <p className="text-xs font-bold" style={{ color: '#4B1F8C' }}>RNE: 00000</p>
+              <p className="text-xs font-bold mb-0.5" style={{ color: '#4B1F8C' }}>CMP: {SPECIALIST_INFO.cmp}</p>
+              <p className="text-xs font-bold" style={{ color: '#4B1F8C' }}>RNE: {SPECIALIST_INFO.rne}</p>
               <p className="text-xs mt-1" style={{ color: '#9CA3AF' }}>Colegiatura activa</p>
             </motion.div>
 
@@ -88,7 +88,7 @@ export default function Specialist() {
             >
               <span className="section-label">CONOCE A LA ESPECIALISTA</span>
               <div className="gold-line" />
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-2" style={{ color: '#1F1B2E' }}>
+              <h2 className="section-title font-black leading-tight mb-2" style={{ color: '#1F1B2E' }}>
                 Dra. María Victoria
               </h2>
               <h3 className="text-2xl sm:text-3xl font-black mb-2" style={{ color: '#4B1F8C' }}>

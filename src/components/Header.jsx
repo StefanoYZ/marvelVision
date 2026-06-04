@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { WHATSAPP_URL } from '../constants';
+import { BRAND_ASSETS, WHATSAPP_URL } from '../constants';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const navLinks = [
@@ -52,7 +52,7 @@ export default function Header() {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[72px]">
+        <div className="flex items-center justify-between h-[76px] xl:h-[80px]">
 
           {/* ── Logo ── */}
           <motion.a
@@ -63,23 +63,20 @@ export default function Header() {
             transition={{ duration: 0.5 }}
             className="flex items-center shrink-0"
           >
-            {/* Logo.png = fondo blanco, letras moradas → usar cuando scrolled (fondo blanco) */}
-            {/* Logo2.png = fondo transparente, letras blancas → usar en hero (fondo oscuro) */}
             <img
-              src={scrolled ? '/gallery/Logo.png' : '/gallery/Logo2.png'}
+              src={scrolled ? BRAND_ASSETS.logo : BRAND_ASSETS.logoLight}
               alt="MarvelVision — Clínica Oftalmológica"
               className="transition-all duration-400 object-contain"
               style={{
-                height: scrolled ? '56px' : '72px',
+                height: scrolled ? '60px' : '76px',
                 width: 'auto',
                 filter: scrolled
                   ? 'none'
-                  : 'drop-shadow(0 2px 10px rgba(0,0,0,0.4))',
+                  : BRAND_ASSETS.logoOnDarkFilter,
               }}
               onError={(e) => {
-                // Si Logo2 no existe aún, usar Logo.png como fallback con filtro
-                e.target.src = '/gallery/Logo.png';
-                e.target.style.filter = 'brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.5))';
+                e.target.src = BRAND_ASSETS.fallbackLogo;
+                e.target.style.filter = BRAND_ASSETS.logoOnDarkFilter;
               }}
             />
           </motion.a>
@@ -94,7 +91,7 @@ export default function Header() {
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.07 * i }}
-                className="px-3.5 py-2 rounded-lg text-sm font-semibold transition-all duration-200"
+                className="px-2 xl:px-3.5 py-2 rounded-lg text-sm font-semibold transition-all duration-200"
                 style={{ color: textColor, textDecoration: 'none' }}
                 onMouseEnter={(e) => {
                   e.target.style.color = textHoverColor;
@@ -118,7 +115,7 @@ export default function Header() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="hidden lg:flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-300"
+            className="hidden lg:flex items-center gap-2 px-4 xl:px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-300"
             style={
               scrolled
                 ? {

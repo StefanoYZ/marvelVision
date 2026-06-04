@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 
 export default function Gallery() {
   return (
-    <section id="galeria" className="py-24 bg-purple-bg overflow-hidden">
+    <section id="galeria" className="section-spacing bg-purple-bg overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -22,7 +22,7 @@ export default function Gallery() {
           <span className="inline-block text-gold font-semibold text-sm tracking-widest uppercase mb-3">
             Nuestra Clínica
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-purple-dark mb-4">
+          <h2 className="section-title font-bold text-purple-dark mb-4">
             Un espacio <span className="text-purple-medium">diseñado para ti</span>
           </h2>
           <p className="text-brand-text/70 text-lg max-w-2xl mx-auto">

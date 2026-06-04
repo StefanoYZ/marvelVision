@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Eye, Zap, Scissors, Droplets, Circle } from 'lucide-react';
+import { ArrowRight, Circle, Droplets, Eye, Scissors, Zap } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
 import { WHATSAPP_URL } from '../constants';
 
@@ -17,150 +17,171 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  hidden: { opacity: 0, y: 36 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.58, ease: 'easeOut' } },
 };
 
 export default function Services() {
   return (
     <section
       id="servicios"
-      className="py-24 px-4"
-      style={{ background: '#F8F7FC' }}
+      className="section-spacing px-4 relative overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #F8F7FC 100%)' }}
     >
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className="absolute -top-20 -left-20 w-72 h-72 rounded-full opacity-20"
+          style={{ border: '2px solid #D9A62E' }}
+        />
+        <div
+          className="absolute -bottom-24 right-10 w-80 h-80 rounded-full opacity-10 blur-3xl"
+          style={{ background: '#4B1F8C' }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-12 lg:mb-14"
         >
           <span className="section-label">NUESTROS SERVICIOS</span>
           <div className="flex justify-center">
             <div className="gold-line" />
           </div>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-4"
+            className="section-title font-black leading-tight mb-4"
             style={{ color: '#1F1B2E' }}
           >
             Soluciones integrales para{' '}
             <span style={{ color: '#4B1F8C' }}>tu visión</span>
           </h2>
-          <p className="text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
-            Ofrecemos tratamientos especializados con tecnología de vanguardia y
-            el más alto estándar de calidad médica.
+          <p className="section-copy leading-relaxed max-w-3xl mx-auto" style={{ color: '#6B7280' }}>
+            Tecnología de vanguardia, especialistas certificados y un enfoque humano
+            para proteger lo más importante: tu salud visual.
           </p>
         </motion.div>
 
-        {/* Cards Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
         >
           {servicesData.map((service) => {
             const Icon = iconMap[service.icon] || Eye;
+
             return (
-              <motion.div
+              <motion.article
                 key={service.id}
                 variants={cardVariants}
-                whileHover={{ y: -8, transition: { duration: 0.25 } }}
-                className="group relative flex flex-col p-8 rounded-2xl bg-white cursor-default"
+                whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                className="group relative min-h-[230px] rounded-2xl bg-white overflow-hidden"
                 style={{
-                  boxShadow: '0 4px 20px rgba(75,31,140,0.06)',
-                  border: '1px solid rgba(75,31,140,0.08)',
-                  transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 20px 60px rgba(75,31,140,0.15)';
-                  e.currentTarget.style.borderColor = 'rgba(217,166,46,0.5)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(75,31,140,0.06)';
-                  e.currentTarget.style.borderColor = 'rgba(75,31,140,0.08)';
+                  boxShadow: '0 16px 44px rgba(75,31,140,0.09)',
+                  border: '1px solid rgba(75,31,140,0.07)',
                 }}
               >
-                {/* Top gold accent */}
                 <div
-                  className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: 'linear-gradient(90deg, #D9A62E, #F2B544)' }}
+                  className="absolute -left-14 -top-14 w-32 h-32 rounded-full opacity-20 pointer-events-none"
+                  style={{ border: '2px solid #D9A62E' }}
                 />
 
-                {/* Icon */}
-                <div className="relative mb-6">
-                  <div
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center"
-                    style={{ background: 'linear-gradient(135deg, #EEE8FF, #F0EBFF)' }}
-                  >
-                    <Icon
-                      className="w-8 h-8 transition-transform duration-300 group-hover:scale-110"
-                      style={{ color: '#4B1F8C' }}
+                <div className="grid h-full grid-cols-1 sm:grid-cols-[42%_1fr]">
+                  <div className="relative min-h-[170px] sm:min-h-[230px] overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      style={{ objectPosition: service.imagePosition || 'center' }}
+                      loading="lazy"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          'linear-gradient(90deg, rgba(255,255,255,0) 35%, rgba(255,255,255,0.78) 100%)',
+                      }}
                     />
                   </div>
-                  {/* Gold dot */}
-                  <div
-                    className="absolute -top-1 -right-1 w-4 h-4 rounded-full border-2 border-white"
-                    style={{ background: '#D9A62E' }}
-                  />
+
+                  <div className="relative flex min-h-[230px] flex-col p-6">
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background:
+                          'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,247,252,0.88) 100%)',
+                      }}
+                    />
+
+                    <div className="relative z-10 flex h-full flex-col">
+                      <div
+                        className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5"
+                        style={{ background: 'linear-gradient(135deg, #EEE8FF, #F6F2FF)' }}
+                      >
+                        <Icon
+                          className="w-6 h-6 transition-transform duration-300 group-hover:scale-110"
+                          style={{ color: '#6B3BBF' }}
+                        />
+                      </div>
+
+                      <h3 className="text-lg font-black mb-3" style={{ color: '#1F1B2E' }}>
+                        {service.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed flex-1" style={{ color: '#6B7280' }}>
+                        {service.description}
+                      </p>
+
+                      <a
+                        href={WHATSAPP_URL}
+                        id={`service-link-${service.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-5 inline-flex items-center gap-2 text-xs font-black transition-all duration-200"
+                        style={{ color: '#4B1F8C', textDecoration: 'none' }}
+                        onMouseEnter={(e) => { e.currentTarget.style.color = '#D9A62E'; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.color = '#4B1F8C'; }}
+                      >
+                        Más información
+                        <ArrowRight className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
-
-                {/* Content */}
-                <h3
-                  className="text-xl font-bold mb-3"
-                  style={{ color: '#1F1B2E' }}
-                >
-                  {service.title}
-                </h3>
-                <p
-                  className="text-sm leading-relaxed flex-1"
-                  style={{ color: '#6B7280' }}
-                >
-                  {service.description}
-                </p>
-
-                {/* CTA Link */}
-                <a
-                  href={WHATSAPP_URL}
-                  id={`service-link-${service.id}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-6 flex items-center gap-2 text-sm font-bold transition-all duration-200"
-                  style={{ color: '#4B1F8C', textDecoration: 'none' }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#D9A62E'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = '#4B1F8C'; }}
-                >
-                  Consultar servicio
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </a>
-              </motion.div>
+              </motion.article>
             );
           })}
 
-          {/* CTA card */}
-          <motion.div
+          <motion.article
             variants={cardVariants}
-            className="flex flex-col items-center justify-center p-8 rounded-2xl text-center"
+            className="relative min-h-[230px] rounded-2xl overflow-hidden flex flex-col items-center justify-center p-8 text-center"
             style={{
-              background: 'linear-gradient(135deg, #4B1F8C, #6B3BBF)',
+              background: 'linear-gradient(135deg, #2B145F 0%, #4B1F8C 58%, #6B3BBF 100%)',
               boxShadow: '0 20px 60px rgba(75,31,140,0.25)',
             }}
           >
             <div
-              className="w-16 h-16 rounded-full border-2 flex items-center justify-center mb-4"
-              style={{ borderColor: 'rgba(217,166,46,0.5)' }}
+              className="absolute -top-20 -right-16 w-56 h-56 rounded-full opacity-20"
+              style={{ background: '#D9A62E' }}
+            />
+            <div
+              className="absolute -bottom-24 -left-16 w-64 h-64 rounded-full opacity-20"
+              style={{ background: '#EEE8FF' }}
+            />
+
+            <div
+              className="relative z-10 w-16 h-16 rounded-full border-2 flex items-center justify-center mb-4"
+              style={{ borderColor: 'rgba(217,166,46,0.5)', background: 'rgba(255,255,255,0.08)' }}
             >
               <Eye className="w-8 h-8" style={{ color: '#D9A62E' }} />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">
+            <h3 className="relative z-10 text-xl font-black text-white mb-3">
               ¿Tienes otra consulta?
             </h3>
-            <p className="text-sm mb-6" style={{ color: 'rgba(255,255,255,0.75)' }}>
+            <p className="relative z-10 text-sm mb-6 leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)' }}>
               Contáctanos por WhatsApp y te orientamos sobre el mejor tratamiento para ti.
             </p>
             <a
@@ -168,7 +189,7 @@ export default function Services() {
               id="services-whatsapp-cta"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300"
+              className="relative z-10 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300"
               style={{
                 background: 'linear-gradient(135deg, #D9A62E, #F2B544)',
                 color: '#1F1B2E',
@@ -186,7 +207,7 @@ export default function Services() {
             >
               Agendar por WhatsApp
             </a>
-          </motion.div>
+          </motion.article>
         </motion.div>
       </div>
     </section>
