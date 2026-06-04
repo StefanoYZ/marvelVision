@@ -1,11 +1,40 @@
 import { motion } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, EffectFade } from 'swiper/modules';
 import { CheckCircle2, Sparkles } from 'lucide-react';
 
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+
 const problems = [
-  { id: 1, text: 'Visión borrosa o cansancio visual' },
+  { id: 1, text: 'Vision borrosa o cansancio visual' },
   { id: 2, text: 'Dificultad para ver de cerca o de lejos' },
   { id: 3, text: 'Molestias por luces o pantallas' },
-  { id: 4, text: 'Sequedad, irritación o enrojecimiento' },
+  { id: 4, text: 'Sequedad, irritacion o enrojecimiento' },
+];
+
+const problemSlides = [
+  {
+    src: '/problems/problema 1.png',
+    alt: 'Vision borrosa o cansancio visual',
+    position: 'center 30%',
+  },
+  {
+    src: '/problems/problema 2.png',
+    alt: 'Dificultad para ver de cerca o de lejos',
+    position: 'center 30%',
+
+  },
+  {
+    src: '/problems/problema 3.png',
+    alt: 'Molestias por luces o pantallas',
+    position: 'center 30%',
+  },
+  {
+    src: '/problems/problema 4.png',
+    alt: 'Sequedad, irritacion o enrojecimiento',
+    position: 'center 30%',
+  }
 ];
 
 const listVariants = {
@@ -27,7 +56,6 @@ export default function ProblemsSection() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          {/* Left: Image placeholder */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -35,37 +63,50 @@ export default function ProblemsSection() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="relative"
           >
-            {/* Main image area */}
             <div
               className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden"
               style={{
                 boxShadow: '0 30px 80px rgba(75,31,140,0.25)',
               }}
             >
-              <img
-                src="/gallery/procedimiento.png"
-                alt="Procedimiento oftalmológico especializado en Marvelvision"
-                className="w-full h-full object-cover"
-                style={{ objectPosition: 'center 30%' }}
-                loading="lazy"
-              />
-              {/* Overlay gradient */}
+              <Swiper
+                modules={[Autoplay, EffectFade]}
+                effect="fade"
+                speed={950}
+                fadeEffect={{ crossFade: true }}
+                autoplay={{ delay: 2600, disableOnInteraction: false }}
+                loop={problemSlides.length > 1}
+                allowTouchMove={false}
+                className="w-full h-full"
+                style={{ height: '100%' }}
+              >
+                {problemSlides.map((slide) => (
+                  <SwiperSlide key={slide.src} style={{ height: '100%' }}>
+                    <img
+                      src={slide.src}
+                      alt={slide.alt}
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: slide.position }}
+                      loading="lazy"
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
               <div
-                className="absolute bottom-0 left-0 right-0 h-1/3"
+                className="absolute bottom-0 left-0 right-0 h-1/3 z-10 pointer-events-none"
                 style={{ background: 'linear-gradient(0deg, rgba(43,20,95,0.8) 0%, transparent 100%)' }}
               />
-              {/* Gold accent top bar */}
               <div
-                className="absolute top-0 left-0 right-0 h-1"
+                className="absolute top-0 left-0 right-0 h-1 z-10 pointer-events-none"
                 style={{ background: 'linear-gradient(90deg, #5C3A00, #C8920A, #F5D878, #C8920A, #5C3A00)' }}
               />
             </div>
 
-            {/* Floating accent card */}
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute bottom-4 right-4 sm:-bottom-6 sm:-right-6 p-4 sm:p-5 rounded-2xl"
+              className="absolute bottom-4 right-4 sm:-bottom-6 sm:-right-6 p-4 sm:p-5 rounded-2xl z-20"
               style={{
                 background: 'white',
                 boxShadow: '0 20px 60px rgba(75,31,140,0.15)',
@@ -85,18 +126,16 @@ export default function ProblemsSection() {
                 </span>
               </div>
               <p className="text-xs" style={{ color: '#9CA3AF' }}>
-                Recuperaron su visión con nosotros
+                Recuperaron su vision con nosotros
               </p>
             </motion.div>
 
-            {/* Gold decorative element */}
             <div
               className="absolute -top-6 -left-6 w-20 h-20 rounded-2xl opacity-20"
               style={{ background: 'linear-gradient(135deg, #D9A62E, #F2B544)', transform: 'rotate(15deg)' }}
             />
           </motion.div>
 
-          {/* Right: Content */}
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -104,7 +143,7 @@ export default function ProblemsSection() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="section-label">MEJORAMOS TU DÍA A DÍA</span>
+              <span className="section-label">MEJORAMOS TU DIA A DIA</span>
               <div className="gold-line" />
               <h2
                 className="section-title font-black leading-tight mb-6"
@@ -114,12 +153,11 @@ export default function ProblemsSection() {
                 <span style={{ color: '#4B1F8C' }}>problemas visuales</span> comunes
               </h2>
               <p className="section-copy leading-relaxed mb-8 lg:mb-10" style={{ color: '#6B7280' }}>
-                Sabemos que los problemas de visión afectan tu calidad de vida.
-                En Marvelvision ofrecemos diagnóstico preciso y tratamientos efectivos.
+                Sabemos que los problemas de vision afectan tu calidad de vida.
+                En Marvelvision ofrecemos diagnostico preciso y tratamientos efectivos.
               </p>
             </motion.div>
 
-            {/* Problems list */}
             <motion.ul
               variants={listVariants}
               initial="hidden"
@@ -157,7 +195,6 @@ export default function ProblemsSection() {
               ))}
             </motion.ul>
 
-            {/* Highlight card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -169,7 +206,6 @@ export default function ProblemsSection() {
                 boxShadow: '0 12px 40px rgba(75,31,140,0.3)',
               }}
             >
-              {/* Background pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div
                   className="absolute -right-8 -top-8 w-40 h-40 rounded-full"
@@ -177,11 +213,11 @@ export default function ProblemsSection() {
                 />
               </div>
               <h3 className="text-lg font-bold text-white mb-2 relative z-10">
-                Tenemos la solución que tus ojos{' '}
+                Tenemos la solucion que tus ojos{' '}
                 <span style={{ color: '#F2B544' }}>necesitan.</span>
               </h3>
               <p className="text-sm leading-relaxed relative z-10" style={{ color: 'rgba(255,255,255,0.8)' }}>
-                Diagnóstico preciso, tratamientos efectivos y un equipo que te acompaña en cada paso.
+                Diagnostico preciso, tratamientos efectivos y un equipo que te acompana en cada paso.
               </p>
             </motion.div>
           </div>
